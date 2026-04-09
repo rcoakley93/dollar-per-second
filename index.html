@@ -161,6 +161,40 @@
   </style>
 </head>
 <body>
-  <!-- content coming in next tasks -->
+  <!-- Input screen -->
+  <div id="input-screen" class="screen">
+    <label for="salary-input">Your yearly salary</label>
+    <input
+      id="salary-input"
+      type="number"
+      placeholder="100000"
+      min="1"
+      autocomplete="off"
+    />
+    <button id="start-btn">Start</button>
+  </div>
+
+  <!-- Counter screen -->
+  <div id="counter-screen" class="screen hidden">
+    <div id="earned">$0.00</div>
+    <div id="since-label">earned since January 1</div>
+
+    <div id="stats">
+      <div class="stat">
+        <span class="stat-value" id="per-day">—</span>
+        <span class="stat-label">per day</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="per-hour">—</span>
+        <span class="stat-label">per hour</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="per-minute">—</span>
+        <span class="stat-label">per minute</span>
+      </div>
+    </div>
+  </div>
+
+  <button id="reset-btn" class="hidden">start over</button>
 </body>
 </html>
