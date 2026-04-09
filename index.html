@@ -196,5 +196,80 @@
   </div>
 
   <button id="reset-btn" class="hidden">start over</button>
+
+  <script>
+    const inputScreen  = document.getElementById('input-screen');
+    const counterScreen = document.getElementById('counter-screen');
+    const salaryInput  = document.getElementById('salary-input');
+    const startBtn     = document.getElementById('start-btn');
+    const resetBtn     = document.getElementById('reset-btn');
+    const earnedEl     = document.getElementById('earned');
+    const perDayEl     = document.getElementById('per-day');
+    const perHourEl    = document.getElementById('per-hour');
+    const perMinEl     = document.getElementById('per-minute');
+
+    let intervalId = null;
+
+    function fmt(n) {
+      return '$' + n.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function startCounter(salary) {
+      const now = new Date();
+      const startOfYear = new Date(now.getFullYear(), 0, 1); // Jan 1, 00:00:00
+      const perSecond = salary / 365 / 24 / 3600;
+
+      // Static derived rates
+      perDayEl.textContent  = fmt(salary / 365);
+      perHourEl.textContent = fmt(salary / 365 / 24);
+      perMinEl.textContent  = fmt(salary / 365 / 24 / 60);
+
+      // Live counter
+      function tick() {
+        const secondsElapsed = (Date.now() - startOfYear.getTime()) / 1000;
+        earnedEl.textContent = fmt(secondsElapsed * perSecond);
+      }
+
+      tick(); // immediate first render
+      intervalId = setInterval(tick, 100);
+    }
+
+    function showCounter(salary) {
+      inputScreen.classList.add('hidden');
+      counterScreen.classList.remove('hidden');
+      resetBtn.classList.remove('hidden');
+      startCounter(salary);
+    }
+
+    function reset() {
+      clearInterval(intervalId);
+      intervalId = null;
+      counterScreen.classList.add('hidden');
+      resetBtn.classList.add('hidden');
+      inputScreen.classList.remove('hidden');
+      salaryInput.value = '';
+      salaryInput.focus();
+    }
+
+    function handleStart() {
+      const salary = parseFloat(salaryInput.value);
+      if (!salary || salary <= 0) {
+        salaryInput.focus();
+        return;
+      }
+      showCounter(salary);
+    }
+
+    startBtn.addEventListener('click', handleStart);
+
+    salaryInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleStart();
+    });
+
+    resetBtn.addEventListener('click', reset);
+  </script>
 </body>
 </html>
