@@ -14,6 +14,8 @@
       --text: #111111;
       --subtle: #888888;
       --accent: #2d7a4f;
+      --border: #e5e5e5;
+      --placeholder: #cccccc;
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', 'Fira Mono', monospace;
     }
@@ -33,7 +35,6 @@
       align-items: center;
       justify-content: center;
       padding: 2rem;
-      transition: opacity 0.4s ease;
     }
 
     .screen.hidden {
@@ -72,7 +73,7 @@
     }
 
     #salary-input::placeholder {
-      color: #cccccc;
+      color: var(--placeholder);
     }
 
     #start-btn {
@@ -114,7 +115,7 @@
     #stats {
       display: flex;
       gap: 2.5rem;
-      border-top: 1px solid #e5e5e5;
+      border-top: 1px solid var(--border);
       padding-top: 1.5rem;
       flex-wrap: wrap;
       justify-content: center;
