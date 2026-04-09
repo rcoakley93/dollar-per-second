@@ -4,6 +4,160 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dollar Per Second</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --subtle: #888888;
+      --accent: #2d7a4f;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Mono', monospace;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+    }
+
+    /* ── Shared centering wrapper ── */
+    .screen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      transition: opacity 0.4s ease;
+    }
+
+    .screen.hidden {
+      display: none;
+    }
+
+    /* ── Input screen ── */
+    #input-screen label {
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 1rem;
+      display: block;
+      text-align: center;
+    }
+
+    #salary-input {
+      font-size: 2rem;
+      font-family: var(--font-sans);
+      border: none;
+      border-bottom: 2px solid var(--text);
+      outline: none;
+      text-align: center;
+      width: 100%;
+      max-width: 320px;
+      padding: 0.5rem 0;
+      background: transparent;
+      color: var(--text);
+      /* hide browser spinner arrows */
+      -moz-appearance: textfield;
+    }
+    #salary-input::-webkit-outer-spin-button,
+    #salary-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    #salary-input::placeholder {
+      color: #cccccc;
+    }
+
+    #start-btn {
+      margin-top: 1.5rem;
+      padding: 0.75rem 2rem;
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: opacity 0.2s;
+    }
+    #start-btn:hover { opacity: 0.75; }
+
+    /* ── Counter screen ── */
+    #counter-screen {
+      gap: 0.5rem;
+    }
+
+    #earned {
+      font-family: var(--font-mono);
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    #since-label {
+      font-size: 0.8125rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 2.5rem;
+    }
+
+    #stats {
+      display: flex;
+      gap: 2.5rem;
+      border-top: 1px solid #e5e5e5;
+      padding-top: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .stat-value {
+      font-size: 1.25rem;
+      font-family: var(--font-mono);
+      color: var(--text);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--subtle);
+    }
+
+    /* ── Reset link ── */
+    #reset-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    #reset-btn:hover { color: var(--text); }
+  </style>
 </head>
 <body>
   <!-- content coming in next tasks -->
