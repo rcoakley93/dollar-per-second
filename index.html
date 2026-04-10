@@ -209,8 +209,25 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--subtle);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
       text-align: center;
+    }
+    .comp-earned {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--accent);
+      text-align: center;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .comp-since {
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      text-align: center;
+      margin-bottom: 0.75rem;
+      margin-top: 0.2rem;
     }
     .comp-stats {
       display: grid;
@@ -617,8 +634,8 @@
           html += '<div class="' + classes + '" data-id="' + item.id + '">';
           html += '<span class="lib-card-check">✓</span>';
           html += '<div class="lib-card-name">' + item.label + '</div>';
-          html += '<div class="lib-card-day">' + fmtSmall(rates.day) + '/day</div>';
-          html += '<div class="lib-card-sub">' + fmtSmall(rates.hour) + '/hr &nbsp; ' + fmtSmall(rates.minute) + '/min</div>';
+          html += '<div class="lib-card-day">' + fmtSmall(item.salary) + '/yr</div>';
+          html += '<div class="lib-card-sub">' + fmtSmall(rates.day) + '/day &nbsp; ' + fmtSmall(rates.hour) + '/hr</div>';
           html += '</div>';
         });
         html += '</div>';
@@ -665,6 +682,8 @@
         const r = calcRates(item.salary);
         html += '<div class="comp-card">';
         html += '<div class="comp-card-label">' + item.label + '</div>';
+        html += '<div class="comp-earned" data-per-second="' + r.second + '">$0.00</div>';
+        html += '<div class="comp-since">earned since january 1</div>';
         html += '<div class="comp-stats">';
         html += '<div class="comp-stat"><span class="comp-stat-value">' + fmt(r.day) + '</span><span class="comp-stat-label">per day</span></div>';
         html += '<div class="comp-stat"><span class="comp-stat-value">' + fmt(r.hour) + '</span><span class="comp-stat-label">per hour</span></div>';
@@ -692,6 +711,9 @@
       function tick() {
         const secondsElapsed = (Date.now() - startOfYear.getTime()) / 1000;
         earnedEl.textContent = fmt(secondsElapsed * perSecond);
+        document.querySelectorAll('.comp-earned').forEach(function(el) {
+          el.textContent = fmt(secondsElapsed * parseFloat(el.dataset.perSecond));
+        });
       }
 
       tick(); // immediate first render
