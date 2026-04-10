@@ -192,6 +192,10 @@
         <span class="stat-value" id="per-minute">—</span>
         <span class="stat-label">per minute</span>
       </div>
+      <div class="stat">
+        <span class="stat-value" id="per-second">—</span>
+        <span class="stat-label">per second</span>
+      </div>
     </div>
   </div>
 
@@ -207,6 +211,7 @@
     const perDayEl     = document.getElementById('per-day');
     const perHourEl    = document.getElementById('per-hour');
     const perMinEl     = document.getElementById('per-minute');
+    const perSecEl     = document.getElementById('per-second');
 
     let intervalId = null;
 
@@ -226,6 +231,7 @@
       perDayEl.textContent  = fmt(salary / 365);
       perHourEl.textContent = fmt(salary / 365 / 24);
       perMinEl.textContent  = fmt(salary / 365 / 24 / 60);
+      perSecEl.textContent  = fmt(salary / 365 / 24 / 3600);
 
       // Live counter
       function tick() {
