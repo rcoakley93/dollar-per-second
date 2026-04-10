@@ -158,6 +158,219 @@
       text-underline-offset: 3px;
     }
     #reset-btn:hover { color: var(--text); }
+
+    /* ── Compare button ── */
+    #compare-btn {
+      margin-top: 2rem;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: none;
+      color: var(--subtle);
+      border: 1px dashed var(--border);
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    #compare-btn:hover { color: var(--text); border-color: var(--text); }
+
+    /* ── Comparisons section ── */
+    #comparisons {
+      width: 100%;
+      max-width: 760px;
+      margin-top: 2rem;
+    }
+    #comparisons-header {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    #comparisons-cards {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .comp-card {
+      border: 1px solid var(--border);
+      padding: 1rem;
+      min-width: 140px;
+      flex: 1;
+      max-width: 220px;
+    }
+    .comp-card-label {
+      font-size: 0.6375rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+    .comp-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+    .comp-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+    }
+    .comp-stat-value {
+      font-size: 0.8125rem;
+      font-family: var(--font-mono);
+      color: var(--text);
+    }
+    .comp-stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--subtle);
+    }
+
+    /* ── Library modal ── */
+    #library-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    #library-modal.hidden { display: none; }
+    #library-panel {
+      background: var(--bg);
+      width: 100%;
+      max-width: 640px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    #library-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    #library-count {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--subtle);
+    }
+    #library-title {
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    #library-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--subtle);
+      font-family: var(--font-sans);
+      line-height: 1;
+      padding: 0.25rem;
+    }
+    #library-close:hover { color: var(--text); }
+    #library-grid {
+      overflow-y: auto;
+      flex: 1;
+      padding: 1rem 1.25rem;
+    }
+    .lib-category {
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin: 1.25rem 0 0.5rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .lib-category:first-child { margin-top: 0; }
+    .lib-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+    @media (max-width: 480px) {
+      .lib-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    .lib-card {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      cursor: pointer;
+      transition: border-color 0.15s;
+      position: relative;
+    }
+    .lib-card:hover:not(.maxed) { border-color: var(--text); }
+    .lib-card.selected { border-color: var(--accent); }
+    .lib-card.maxed { opacity: 0.4; pointer-events: none; }
+    .lib-card.selected.maxed { opacity: 1; pointer-events: auto; }
+    .lib-card-check {
+      position: absolute;
+      top: 0.3rem;
+      right: 0.4rem;
+      font-size: 0.65rem;
+      color: var(--accent);
+      display: none;
+    }
+    .lib-card.selected .lib-card-check { display: block; }
+    .lib-card-name {
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      padding-right: 0.75rem;
+      line-height: 1.3;
+    }
+    .lib-card-day {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--accent);
+    }
+    .lib-card-sub {
+      font-size: 0.6rem;
+      font-family: var(--font-mono);
+      color: var(--subtle);
+      margin-top: 0.1rem;
+    }
+    #library-footer {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    #library-add-btn {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 0.8125rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: opacity 0.2s;
+    }
+    #library-add-btn:hover { opacity: 0.75; }
+    #library-add-btn.empty { opacity: 0.35; cursor: default; }
   </style>
 </head>
 <body>
@@ -197,11 +410,124 @@
         <span class="stat-label">per second</span>
       </div>
     </div>
+
+    <button id="compare-btn">+ Add Comparison Card</button>
+
+    <div id="comparisons" class="hidden">
+      <div id="comparisons-header">Comparisons</div>
+      <div id="comparisons-cards"></div>
+    </div>
   </div>
 
   <button id="reset-btn" class="hidden">start over</button>
 
+  <!-- Comparison library modal -->
+  <div id="library-modal" class="hidden">
+    <div id="library-panel">
+      <div id="library-header">
+        <span id="library-count"></span>
+        <span id="library-title">Comparison Library</span>
+        <button id="library-close">✕</button>
+      </div>
+      <div id="library-grid"></div>
+      <div id="library-footer">
+        <button id="library-add-btn">Add to My List (0 / 3)</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // ── Comparison library data ──
+    const LIBRARY = [
+      // General
+      { id: 0,  category: 'General',      label: 'Median US Household',    salary: 83782 },
+      { id: 1,  category: 'General',      label: 'Avg US Individual',      salary: 65470 },
+      { id: 2,  category: 'General',      label: 'Avg US CEO',             salary: 151302 },
+      // Sports
+      { id: 3,  category: 'Sports',       label: 'NBA Player',             salary: 10508687 },
+      { id: 4,  category: 'Sports',       label: 'MLB Player',             salary: 4900000 },
+      { id: 5,  category: 'Sports',       label: 'NHL Player',             salary: 3500000 },
+      { id: 6,  category: 'Sports',       label: 'NFL Player',             salary: 3300000 },
+      { id: 7,  category: 'Sports',       label: 'WNBA Player',            salary: 600000 },
+      { id: 8,  category: 'Sports',       label: 'MLS Player',             salary: 530000 },
+      // Military
+      { id: 9,  category: 'Military',     label: 'US Military E-5 Enlisted', salary: 45165 },
+      { id: 10, category: 'Military',     label: 'US Military O-3 Officer',  salary: 93934 },
+      // Common Jobs
+      { id: 11, category: 'Common Jobs',  label: 'General/Ops Manager',    salary: 133120 },
+      { id: 12, category: 'Common Jobs',  label: 'Registered Nurse',       salary: 98430 },
+      { id: 13, category: 'Common Jobs',  label: 'Software Developer',     salary: 132270 },
+      { id: 14, category: 'Common Jobs',  label: 'Accountant',             salary: 78000 },
+      { id: 15, category: 'Common Jobs',  label: 'High School Teacher',    salary: 65000 },
+      { id: 16, category: 'Common Jobs',  label: 'Truck Driver',           salary: 48310 },
+      { id: 17, category: 'Common Jobs',  label: 'Bookkeeper',             salary: 45560 },
+      { id: 18, category: 'Common Jobs',  label: 'Office Clerk',           salary: 45470 },
+      { id: 19, category: 'Common Jobs',  label: 'Maintenance Worker',     salary: 44980 },
+      { id: 20, category: 'Common Jobs',  label: 'Construction Laborer',   salary: 44730 },
+      { id: 21, category: 'Common Jobs',  label: 'Customer Service Rep',   salary: 39680 },
+      { id: 22, category: 'Common Jobs',  label: 'Material Mover',         salary: 38990 },
+      { id: 23, category: 'Common Jobs',  label: 'Medical Assistant',      salary: 38270 },
+      { id: 24, category: 'Common Jobs',  label: 'Stocker',                salary: 37090 },
+      { id: 25, category: 'Common Jobs',  label: 'Home Health Aide',       salary: 34900 },
+      { id: 26, category: 'Common Jobs',  label: 'Janitor',                salary: 34600 },
+      { id: 27, category: 'Common Jobs',  label: 'Waiter / Waitress',      salary: 33020 },
+      { id: 28, category: 'Common Jobs',  label: 'Fast Food Worker',       salary: 31350 },
+      { id: 29, category: 'Common Jobs',  label: 'Retail Salesperson',     salary: 30440 },
+      { id: 30, category: 'Common Jobs',  label: 'Cashier',                salary: 29740 },
+      // By State
+      { id: 31, category: 'By State',     label: 'Alabama',                salary: 53400 },
+      { id: 32, category: 'By State',     label: 'Alaska',                 salary: 69880 },
+      { id: 33, category: 'By State',     label: 'Arizona',                salary: 63040 },
+      { id: 34, category: 'By State',     label: 'Arkansas',               salary: 51250 },
+      { id: 35, category: 'By State',     label: 'California',             salary: 76960 },
+      { id: 36, category: 'By State',     label: 'Colorado',               salary: 71960 },
+      { id: 37, category: 'By State',     label: 'Connecticut',            salary: 73740 },
+      { id: 38, category: 'By State',     label: 'Delaware',               salary: 65990 },
+      { id: 39, category: 'By State',     label: 'District of Columbia',   salary: 89800 },
+      { id: 40, category: 'By State',     label: 'Florida',                salary: 60210 },
+      { id: 41, category: 'By State',     label: 'Georgia',                salary: 61250 },
+      { id: 42, category: 'By State',     label: 'Hawaii',                 salary: 65030 },
+      { id: 43, category: 'By State',     label: 'Idaho',                  salary: 55640 },
+      { id: 44, category: 'By State',     label: 'Illinois',               salary: 67130 },
+      { id: 45, category: 'By State',     label: 'Indiana',                salary: 56420 },
+      { id: 46, category: 'By State',     label: 'Iowa',                   salary: 56400 },
+      { id: 47, category: 'By State',     label: 'Kansas',                 salary: 56270 },
+      { id: 48, category: 'By State',     label: 'Kentucky',               salary: 54030 },
+      { id: 49, category: 'By State',     label: 'Louisiana',              salary: 53440 },
+      { id: 50, category: 'By State',     label: 'Maine',                  salary: 60000 },
+      { id: 51, category: 'By State',     label: 'Maryland',               salary: 73620 },
+      { id: 52, category: 'By State',     label: 'Massachusetts',          salary: 80330 },
+      { id: 53, category: 'By State',     label: 'Michigan',               salary: 60600 },
+      { id: 54, category: 'By State',     label: 'Minnesota',              salary: 66700 },
+      { id: 55, category: 'By State',     label: 'Mississippi',            salary: 47570 },
+      { id: 56, category: 'By State',     label: 'Missouri',               salary: 57580 },
+      { id: 57, category: 'By State',     label: 'Montana',                salary: 55920 },
+      { id: 58, category: 'By State',     label: 'Nebraska',               salary: 58080 },
+      { id: 59, category: 'By State',     label: 'Nevada',                 salary: 58900 },
+      { id: 60, category: 'By State',     label: 'New Hampshire',          salary: 66110 },
+      { id: 61, category: 'By State',     label: 'New Jersey',             salary: 73980 },
+      { id: 62, category: 'By State',     label: 'New Mexico',             salary: 57520 },
+      { id: 63, category: 'By State',     label: 'New York',               salary: 78620 },
+      { id: 64, category: 'By State',     label: 'North Carolina',         salary: 59730 },
+      { id: 65, category: 'By State',     label: 'North Dakota',           salary: 59050 },
+      { id: 66, category: 'By State',     label: 'Ohio',                   salary: 59890 },
+      { id: 67, category: 'By State',     label: 'Oklahoma',               salary: 53450 },
+      { id: 68, category: 'By State',     label: 'Oregon',                 salary: 66710 },
+      { id: 69, category: 'By State',     label: 'Pennsylvania',           salary: 61920 },
+      { id: 70, category: 'By State',     label: 'Rhode Island',           salary: 66610 },
+      { id: 71, category: 'By State',     label: 'South Carolina',         salary: 54250 },
+      { id: 72, category: 'By State',     label: 'South Dakota',           salary: 53230 },
+      { id: 73, category: 'By State',     label: 'Tennessee',              salary: 56030 },
+      { id: 74, category: 'By State',     label: 'Texas',                  salary: 61240 },
+      { id: 75, category: 'By State',     label: 'Utah',                   salary: 61070 },
+      { id: 76, category: 'By State',     label: 'Vermont',                salary: 62780 },
+      { id: 77, category: 'By State',     label: 'Virginia',               salary: 70050 },
+      { id: 78, category: 'By State',     label: 'Washington',             salary: 78130 },
+      { id: 79, category: 'By State',     label: 'West Virginia',          salary: 52200 },
+      { id: 80, category: 'By State',     label: 'Wisconsin',              salary: 59500 },
+      { id: 81, category: 'By State',     label: 'Wyoming',                salary: 57930 },
+    ];
+
     const inputScreen  = document.getElementById('input-screen');
     const counterScreen = document.getElementById('counter-screen');
     const salaryInput  = document.getElementById('salary-input');
@@ -211,9 +537,19 @@
     const perDayEl     = document.getElementById('per-day');
     const perHourEl    = document.getElementById('per-hour');
     const perMinEl     = document.getElementById('per-minute');
-    const perSecEl     = document.getElementById('per-second');
+    const perSecEl        = document.getElementById('per-second');
+    const compareBtnEl    = document.getElementById('compare-btn');
+    const comparisonsEl   = document.getElementById('comparisons');
+    const comparisonsCards = document.getElementById('comparisons-cards');
+    const comparisonsHeader = document.getElementById('comparisons-header');
+    const libraryModalEl  = document.getElementById('library-modal');
+    const libraryGridEl   = document.getElementById('library-grid');
+    const libraryCountEl  = document.getElementById('library-count');
+    const libraryAddBtnEl = document.getElementById('library-add-btn');
+    const libraryCloseEl  = document.getElementById('library-close');
 
     let intervalId = null;
+    let selectedIds = new Set(); // max 3
 
     function fmt(n) {
       return '$' + n.toLocaleString('en-US', {
@@ -228,6 +564,117 @@
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals
       });
+    }
+
+    function calcRates(salary) {
+      return {
+        day:    salary / 365,
+        hour:   salary / 365 / 24,
+        minute: salary / 365 / 24 / 60,
+        second: salary / 365 / 24 / 3600,
+      };
+    }
+
+    function fmtSmall(n) {
+      // compact formatter for library cards and comparison cards
+      if (n >= 1000) return '$' + Math.round(n).toLocaleString('en-US');
+      if (n >= 100)  return '$' + n.toFixed(0);
+      if (n >= 1)    return '$' + n.toFixed(2);
+      return fmtSec(n);
+    }
+
+    function openLibrary() {
+      libraryModalEl.classList.remove('hidden');
+      renderLibrary();
+    }
+
+    function closeLibrary() {
+      libraryModalEl.classList.add('hidden');
+    }
+
+    function renderLibrary() {
+      const atMax = selectedIds.size >= 3;
+      libraryCountEl.textContent = LIBRARY.length + ' options available';
+      libraryAddBtnEl.textContent = 'Add to My List (' + selectedIds.size + ' / 3)';
+      libraryAddBtnEl.classList.toggle('empty', selectedIds.size === 0);
+
+      // Group by category
+      const grouped = {};
+      LIBRARY.forEach(item => {
+        if (!grouped[item.category]) grouped[item.category] = [];
+        grouped[item.category].push(item);
+      });
+
+      let html = '';
+      Object.keys(grouped).forEach(cat => {
+        html += '<div class="lib-category">' + cat + '</div>';
+        html += '<div class="lib-cards">';
+        grouped[cat].forEach(item => {
+          const rates = calcRates(item.salary);
+          const isSelected = selectedIds.has(item.id);
+          const isMaxed = atMax && !isSelected;
+          const classes = 'lib-card' + (isSelected ? ' selected' : '') + (isMaxed ? ' maxed' : '');
+          html += '<div class="' + classes + '" data-id="' + item.id + '">';
+          html += '<span class="lib-card-check">✓</span>';
+          html += '<div class="lib-card-name">' + item.label + '</div>';
+          html += '<div class="lib-card-day">' + fmtSmall(rates.day) + '/day</div>';
+          html += '<div class="lib-card-sub">' + fmtSmall(rates.hour) + '/hr &nbsp; ' + fmtSmall(rates.minute) + '/min</div>';
+          html += '</div>';
+        });
+        html += '</div>';
+      });
+
+      libraryGridEl.innerHTML = html;
+
+      // Attach click listeners
+      libraryGridEl.querySelectorAll('.lib-card').forEach(card => {
+        card.addEventListener('click', function() {
+          const id = parseInt(this.dataset.id, 10);
+          toggleSelection(id);
+        });
+      });
+    }
+
+    function toggleSelection(id) {
+      if (selectedIds.has(id)) {
+        selectedIds.delete(id);
+      } else if (selectedIds.size < 3) {
+        selectedIds.add(id);
+      }
+      renderLibrary();
+    }
+
+    function confirmSelection() {
+      closeLibrary();
+      renderComparisons();
+    }
+
+    function renderComparisons() {
+      if (selectedIds.size === 0) {
+        comparisonsEl.classList.add('hidden');
+        return;
+      }
+
+      const atMax = selectedIds.size >= 3;
+      comparisonsHeader.textContent = atMax ? 'Comparisons (Max 3 reached)' : 'Comparisons';
+
+      let html = '';
+      selectedIds.forEach(id => {
+        const item = LIBRARY.find(x => x.id === id);
+        if (!item) return;
+        const r = calcRates(item.salary);
+        html += '<div class="comp-card">';
+        html += '<div class="comp-card-label">' + item.label + '</div>';
+        html += '<div class="comp-stats">';
+        html += '<div class="comp-stat"><span class="comp-stat-value">' + fmt(r.day) + '</span><span class="comp-stat-label">per day</span></div>';
+        html += '<div class="comp-stat"><span class="comp-stat-value">' + fmt(r.hour) + '</span><span class="comp-stat-label">per hour</span></div>';
+        html += '<div class="comp-stat"><span class="comp-stat-value">' + fmt(r.minute) + '</span><span class="comp-stat-label">per min</span></div>';
+        html += '<div class="comp-stat"><span class="comp-stat-value">' + fmtSec(r.second) + '</span><span class="comp-stat-label">per sec</span></div>';
+        html += '</div></div>';
+      });
+
+      comparisonsCards.innerHTML = html;
+      comparisonsEl.classList.remove('hidden');
     }
 
     function startCounter(salary) {
@@ -261,6 +708,9 @@
     function reset() {
       clearInterval(intervalId);
       intervalId = null;
+      selectedIds.clear();
+      comparisonsEl.classList.add('hidden');
+      comparisonsCards.innerHTML = '';
       counterScreen.classList.add('hidden');
       resetBtn.classList.add('hidden');
       inputScreen.classList.remove('hidden');
@@ -284,6 +734,15 @@
     });
 
     resetBtn.addEventListener('click', reset);
+
+    compareBtnEl.addEventListener('click', openLibrary);
+    libraryCloseEl.addEventListener('click', closeLibrary);
+    libraryAddBtnEl.addEventListener('click', function() {
+      if (selectedIds.size > 0) confirmSelection();
+    });
+    libraryModalEl.addEventListener('click', function(e) {
+      if (e.target === libraryModalEl) closeLibrary();
+    });
   </script>
 </body>
 </html>
