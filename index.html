@@ -222,6 +222,14 @@
       });
     }
 
+    function fmtSec(n) {
+      const decimals = n >= 0.01 ? 2 : Math.ceil(-Math.log10(n)) + 2;
+      return '$' + n.toLocaleString('en-US', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+    }
+
     function startCounter(salary) {
       const now = new Date();
       const startOfYear = new Date(now.getFullYear(), 0, 1); // Jan 1, 00:00:00
@@ -231,7 +239,7 @@
       perDayEl.textContent  = fmt(salary / 365);
       perHourEl.textContent = fmt(salary / 365 / 24);
       perMinEl.textContent  = fmt(salary / 365 / 24 / 60);
-      perSecEl.textContent  = fmt(salary / 365 / 24 / 3600);
+      perSecEl.textContent  = fmtSec(salary / 365 / 24 / 3600);
 
       // Live counter
       function tick() {
